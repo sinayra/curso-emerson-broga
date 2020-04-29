@@ -1,29 +1,79 @@
-@import "./variables";
 @import "./reset";
+@import "./breakpoints";
+@import "./variables";
+@import "./mixins";
 
-@function weight ($key){
-    @return map-get($map: $font-weight, $key: bold);
-}
+section {
+  width: 100%;
+  height: auto;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+  @include flexCenter();
 
-@mixin flexCenter ($direction){
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: $direction;
-}
+  @include media-breakpoint-up(sm) {
+    padding: 20px;
+    height: 100vh;
+  }
 
-body{
-    background-color: lighten(black, 30%);
-    color: darken(white, 10%);
+  &.javascript {
+    @include theme(#fadb36, black);
+  }
+  &.react {
+    @include theme(#00c0dc, white);
+
     .container {
-        @include flexCenter(column);
-        
+      .actions {
+        .btn {
+          &:hover {
+            color: #3c3e34;
+          }
+        }
+      }
     }
+  }
+  &.nodejs {
+    @include theme(#7db741, #3c3e34);
+  }
+
+  .container {
+    width: calc(100% - 40px);
+    padding: 80px 0 100px;
+
+    @include media-breakpoint-up(sm) {
+      width: 80%;
+      padding: 0;
+    }
+
     h1 {
-        color: $primary-color;
-        font-weight: weight(bold);
+      width: 100%;
+      font-size: 2.4rem;
+      text-align: left;
+      padding: 24px 0;
+      font-weight: weight(bold);
     }
-    a {
-        color: $primary-color;
+
+    p {
+      line-height: 1.5rem;
+      text-align: justify;
+      @include media-breakpoint-up(sm) {
+        text-align: left;
+      }
     }
+    .actions {
+      @include flexCenter(row);
+      margin-top: 40px;
+      .btn {
+        margin: 0 auto;
+        padding: 8px;
+        border-radius: 8px;
+        font-size: 1.5rem;
+        text-decoration: none;
+        color: inherit;
+        font-weight: weight(medium);
+        &:hover {
+          color: white;
+        }
+      }
+    }
+  }
 }
