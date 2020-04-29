@@ -1,0 +1,29 @@
+@import "./variables";
+@import "./reset";
+
+@function weight ($key){
+    @return map-get($map: $font-weight, $key: bold);
+}
+
+@mixin flexCenter ($direction){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: $direction;
+}
+
+body{
+    background-color: lighten(black, 30%);
+    color: darken(white, 10%);
+    .container {
+        @include flexCenter(column);
+        
+    }
+    h1 {
+        color: $primary-color;
+        font-weight: weight(bold);
+    }
+    a {
+        color: $primary-color;
+    }
+}
